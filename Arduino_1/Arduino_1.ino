@@ -57,6 +57,24 @@ void reculer()
   digitalWrite(brakeD, LOW);
   analogWrite(11,255);
 }
+void reculerG()
+{
+  digitalWrite(moteurG, HIGH);
+  digitalWrite(brakeG, LOW);
+  analogWrite(3,0);
+  digitalWrite(moteurD, HIGH);
+  digitalWrite(brakeD, LOW);
+  analogWrite(11,255);
+}
+void reculerD()
+{
+  digitalWrite(moteurG, HIGH);
+  digitalWrite(brakeG, LOW);
+  analogWrite(3,255);
+  digitalWrite(moteurD, HIGH);
+  digitalWrite(brakeD, LOW);
+  analogWrite(11,0);
+}
 void arreter()
 {
   digitalWrite(moteurG, HIGH);
@@ -116,12 +134,17 @@ void pivoterDroite100()
   delay(3600);
 }
 
+
 //---------------BOUCLE---------------
 void loop() {
-  pivoterGauche100();
+  reculerG();
+  delay(1000);
   arreter();
   delay(500);
+  reculerD();
+  delay(1000);
 
+}
 }
 
 }

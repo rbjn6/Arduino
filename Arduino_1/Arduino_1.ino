@@ -1,3 +1,7 @@
+//**Programme afin de programmer un robot arduino et lui permmettre d'avancer, reculer, tourner et d'agir en fonctoion de son environement.**
+
+
+
 //____________DECLARATION DES VARIABLES EN LIEN AVEC LES MOTEURS____________
 const int moteurG=12;
 const int brakeG=9;
@@ -6,7 +10,8 @@ const int moteurD=13;
 const int brakeD=8;
 
 //-----------DECLARATION DES VARIABLES EN LIEN AVEC LES MOUSTACHES-----------
-const int Moustache=1;
+const int moustache1=6;
+const int moustache2=7;
 
 //----------------SETUP----------------
 void setup() {
@@ -17,9 +22,14 @@ void setup() {
   //Setup Channel D
   pinMode(moteurD, OUTPUT); //Initiates Motor Channel D pin
   pinMode(brakeG, OUTPUT);  //Initiates Brake Channel D pin
+
+  //Setup Moustaches 
+  pinMode(moustache1, INPUT_PULLUP);
+  pinMode(moustache2, INPUT_PULLUP);
+
 }
 
-//------------------FONCTIONS POUR LES MOTEURS------------------
+//------------------FONCTIONS POUR LES DEPLACEMENTS DE BASE------------------
 void avancer()
 {
   digitalWrite(moteurG, LOW);
@@ -60,11 +70,16 @@ void reculer()
 void reculerG()
 {
   digitalWrite(moteurG, HIGH);
-  digitalWrite(brakeG, LOW);
+  digitalWrite(brakeG, HIGH);
   analogWrite(3,0);
   digitalWrite(moteurD, HIGH);
   digitalWrite(brakeD, LOW);
   analogWrite(11,255);
+}
+void obstacleG()
+{
+  reculerG();
+  delay(300);
 }
 void reculerD()
 {
@@ -72,9 +87,15 @@ void reculerD()
   digitalWrite(brakeG, LOW);
   analogWrite(3,255);
   digitalWrite(moteurD, HIGH);
-  digitalWrite(brakeD, LOW);
+  digitalWrite(brakeD, HIGH);
   analogWrite(11,0);
 }
+void obstacleD()
+{
+  reculerD();
+  delay(300);
+}
+//------------------FONCTIONS POUR LES DEPLACEMENTS SUR PLACE------------------
 void arreter()
 {
   digitalWrite(moteurG, HIGH);
@@ -84,7 +105,7 @@ void arreter()
   digitalWrite(brakeD, HIGH);
   analogWrite(11,0);
 }
-void pivoterGauche()
+void pivoterGauche() //pivoter a gauche en restant au meme endroit 
 {
   digitalWrite(moteurG, HIGH);
   digitalWrite(brakeG, LOW);
@@ -93,7 +114,7 @@ void pivoterGauche()
   digitalWrite(brakeD, LOW);
   analogWrite(11,255);
 }
-void pivoterDroite()
+void pivoterDroite() //pivoter a droite en restant au meme endroit 
 {
   digitalWrite(moteurG, LOW);
   digitalWrite(brakeG, LOW);
@@ -103,48 +124,49 @@ void pivoterDroite()
   analogWrite(11,255);
 
 }
-void pivoterGauche25()
+void pivoterGauche25() // 1/4 de tour a gauche
 {
   pivoterGauche();
-  delay(900);
+  delay(180);
 }
-void pivoterGauche50()
+void pivoterGauche50() // 180 a gauche
 {
   pivoterGauche();
-  delay(1800);
+  delay(360);
 }
-void pivoterGauche100()
+void pivoterGauche100() //  360 a gauche
 {
   pivoterGauche();
-  delay(3600);
+  delay(720);
 }
-void pivoterDroite25()
+void pivoterDroite25() // 1/4 de tour a droite
 {
   pivoterDroite();
-  delay(900);
+  delay(180);
 }
-void pivoterDroite50()
+void pivoterDroite50() //180 a droite
 {
   pivoterDroite();
-  delay(1800);
+  delay(360);
 }
-void pivoterDroite100()
+void pivoterDroite100() //360 a droite
 {
   pivoterDroite();
-  delay(3600);
+  delay(720);
 }
 
 
 //---------------BOUCLE---------------
 void loop() {
-  reculerG();
-  delay(1000);
-  arreter();
-  delay(500);
-  reculerD();
-  delay(1000);
 
-}
+  if (digitalRead(moustache1)==LOW){
+    obstacleG();
+    }
+
+  else if (digitalRead(moustache2)==LOW){
+    obstacleD();
+  }
+
+  avancer();
 }
 
-}

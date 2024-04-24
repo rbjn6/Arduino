@@ -1,4 +1,4 @@
-//**Programme afin de programmer un robot arduino et lui permmettre d'avancer, reculer, tourner et d'agir en fonctoion de son environement.**
+//**Programme pour un robot arduino et lui permmettre d'avancer, reculer, tourner et d'agir en fonctoion de son environement.**
 
 
 

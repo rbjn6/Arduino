@@ -1,4 +1,4 @@
-//**Programme pour un robot arduino et lui permmettre d'avancer, reculer, tourner et d'agir en fonctoion de son environement.**
+//**Programme pour un robot arduino afin de lui permmettre d'avancer, de reculer, de tourner et d'agir en fonctoion de son environement.**
 
 
 
@@ -30,17 +30,17 @@ void setup() {
 }
 
 //------------------FONCTIONS POUR LES DEPLACEMENTS DE BASE------------------
-void avancer()
+void avancer()  //Fonction pour avancer tout droit à la vitesse maximale
 {
-  digitalWrite(moteurG, LOW);
-  digitalWrite(brakeG, LOW);
-  analogWrite(3,255);
-  digitalWrite(moteurD, LOW);
-  digitalWrite(brakeD, LOW);
-  analogWrite(11,255);
+  digitalWrite(moteurG, LOW);  //Initialisation du sens de rotation du moteur gauche (ici vers l'avant)
+  digitalWrite(brakeG, LOW);   // Enclenchement ou non du frein du moteur gauche ( ici non enclenché)
+  analogWrite(3,255);          //Initialisation de la vitesse de rotation du moteur Gauche (ici au max :255)
+  digitalWrite(moteurD, LOW);  //Initialisation du sens de rotation du moteur droit (ici vers l'avant)
+  digitalWrite(brakeD, LOW);   // Enclenchement ou non du frein du moteur droit ( ici non enclenché)
+  analogWrite(11,255);         //Initialisation de la vitesse de rotation du moteur Droit (ici au max : 255)
 }
 
-void gauche()
+void gauche()  //Fonction pour tourner à gauche en avançant
 {
   digitalWrite(moteurG, HIGH);
   digitalWrite(brakeG, HIGH);
@@ -49,7 +49,7 @@ void gauche()
   digitalWrite(brakeD, LOW);
   analogWrite(11,255);
 }
-void droite()
+void droite()  //Fonction pour tourner à droite en avançant
 {
   digitalWrite(moteurG, LOW);
   digitalWrite(brakeG, LOW);
@@ -58,7 +58,7 @@ void droite()
   digitalWrite(brakeD, HIGH);
   analogWrite(11,0);
 }
-void reculer()
+void reculer()  //Fonction pour reculer tout droit à la vitesse maximale
 {
   digitalWrite(moteurG, HIGH);
   digitalWrite(brakeG, LOW);
@@ -67,7 +67,7 @@ void reculer()
   digitalWrite(brakeD, LOW);
   analogWrite(11,255);
 }
-void reculerG()
+void reculerG()  //Fonction pour tourner à gauche en reculant
 {
   digitalWrite(moteurG, HIGH);
   digitalWrite(brakeG, HIGH);
@@ -76,12 +76,12 @@ void reculerG()
   digitalWrite(brakeD, LOW);
   analogWrite(11,255);
 }
-void obstacleG()
+void obstacleG()  //Fonction pour faire 1/4 de demi tour à gauche en reculant 
 {
   reculerG();
   delay(300);
 }
-void reculerD()
+void reculerD()  //Fonction pour tourner à droite en reculant
 {
   digitalWrite(moteurG, HIGH);
   digitalWrite(brakeG, LOW);
@@ -90,13 +90,13 @@ void reculerD()
   digitalWrite(brakeD, HIGH);
   analogWrite(11,0);
 }
-void obstacleD()
+void obstacleD()  //Fonction pour faire 1/4 de demi tour à droite en reculant 
 {
   reculerD();
   delay(300);
 }
 //------------------FONCTIONS POUR LES DEPLACEMENTS SUR PLACE------------------
-void arreter()
+void arreter()  //Fonction pour mettre le vehicule à l'arrêt
 {
   digitalWrite(moteurG, HIGH);
   digitalWrite(brakeG, HIGH);
@@ -105,7 +105,7 @@ void arreter()
   digitalWrite(brakeD, HIGH);
   analogWrite(11,0);
 }
-void pivoterGauche() //pivoter a gauche en restant au meme endroit 
+void pivoterGauche()  //Fonction pour pivoter à gauche tout en restant au même endroit 
 {
   digitalWrite(moteurG, HIGH);
   digitalWrite(brakeG, LOW);
@@ -114,7 +114,7 @@ void pivoterGauche() //pivoter a gauche en restant au meme endroit
   digitalWrite(brakeD, LOW);
   analogWrite(11,255);
 }
-void pivoterDroite() //pivoter a droite en restant au meme endroit 
+void pivoterDroite()  //Fonction pour pivoter à droiter tout en restant au même endroit 
 {
   digitalWrite(moteurG, LOW);
   digitalWrite(brakeG, LOW);
@@ -124,32 +124,32 @@ void pivoterDroite() //pivoter a droite en restant au meme endroit
   analogWrite(11,255);
 
 }
-void pivoterGauche25() // 1/4 de tour a gauche
+void pivoterGauche25()  //Fonction pour pivoter de 1/4 de tour à gauche tout en restant au même endroit 
 {
   pivoterGauche();
   delay(180);
 }
-void pivoterGauche50() // 180 a gauche
+void pivoterGauche50()  //Fonction pour pivoter de 180° à gauche tout en restant au même endroit 
 {
   pivoterGauche();
   delay(360);
 }
-void pivoterGauche100() //  360 a gauche
+void pivoterGauche100()  //Fonction pour pivoter de 360° à gauche tout en restant au même endroit 
 {
   pivoterGauche();
   delay(720);
 }
-void pivoterDroite25() // 1/4 de tour a droite
+void pivoterDroite25()  //Fonction pour pivoter de 1/4 de tour à Droite tout en restant au même endroit 
 {
   pivoterDroite();
   delay(180);
 }
-void pivoterDroite50() //180 a droite
+void pivoterDroite50()  //Fonction pour pivoter de 180° à droite tout en restant au même endroit 
 {
   pivoterDroite();
   delay(360);
 }
-void pivoterDroite100() //360 a droite
+void pivoterDroite100()  //Fonction pour pivoter de 360° à gauche tout en restant au même endroit 
 {
   pivoterDroite();
   delay(720);
